@@ -12,6 +12,7 @@ SECTIONS {
 		_stext = .;
 		src/start.o(.text*)
 		*(.text*)
+		*(.rodata*)
 		. = ALIGN(4);
 		_etext = .;
 	} >ROM
@@ -32,6 +33,6 @@ SECTIONS {
 		*(.bss*)
 		. = ALIGN(4);
 		_ebss = .;
-		_stack = _ebss + 512;
+		_stack = ORIGIN(DRAM) + LENGTH(DRAM) - 1M;
 	} >RAM
 }
