@@ -48,7 +48,7 @@ static void flash_dump(uint32_t addr, uint32_t len) {
 	spi_ss(1);
 }
 
-static void flash_read(uint32_t addr, uint32_t len, void *buf) {
+static void flash_copy(uint32_t addr, uint32_t len, void *buf) {
 	uint8_t *dst = (uint8_t*)buf;
 	spi_ss(0);
 
@@ -66,14 +66,8 @@ static void flash_read(uint32_t addr, uint32_t len, void *buf) {
 
 void main(void) {
 	uart_print("ATX040 Bootloader " __DATE__ " " __TIME__ "\r\n");
-	flash_dump(0, 256);
-	flash_dump(0x80000, 256);
-	uint64_t val = 0;
-	for (;;) {
-		if ((val + 100000000) < timer_get()) {
-			uart_print(".\n\r");
-			val = timer_get();
-		}
-		//uart_putc(uart_getc());
-	}
+	flash_copy(0x80000, 256*1024, (void*)(31*1024*1024));
+	void *ptr = (void*)(31*1024*1024 + 0x400);
+	uart_print("Booting...\r\n");
+	goto *ptr;
 }
