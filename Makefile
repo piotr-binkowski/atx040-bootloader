@@ -7,7 +7,7 @@ OBJDUMP=m68k-elf-objdump
 
 CPUFLAGS = -m68040
 ASFLAGS  = $(CPUFLAGS)
-CFLAGS   = $(CPUFLAGS) -Os -std=c99 -ffreestanding -I src/include
+CFLAGS   = $(CPUFLAGS) -Os -std=c99 -ffreestanding -I src/include -flto
 LDFLAGS  = -nostdlib -lgcc
 
 SRCS  = $(wildcard src/*.c)
