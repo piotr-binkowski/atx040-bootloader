@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-#define UART_BASE	0xC0000000
+#define UART_BASE	0xF1000000
 
 #define UART_DATA	0x0
 #define UART_STATUS	0x4

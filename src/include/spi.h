@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-#define SPI_BASE	0xC4000000
+#define SPI_BASE	0xF2000000
 
 #define SPI_DATA_WR	0x0
 #define SPI_DATA_RD_L	0x0

@@ -1,9 +1,8 @@
 ENTRY(_start)
 
 MEMORY {
-	DRAM (rwx) : ORIGIN = 0x00000000, LENGTH = 32m
-	RAM  (rwx) : ORIGIN = 0x80000000, LENGTH = 4k
-	ROM  (rx)  : ORIGIN = 0x40000000, LENGTH = 256
+	RAM (rwx) : ORIGIN = 0x00000000, LENGTH = 32m
+	ROM  (rx) : ORIGIN = 0xF0000000, LENGTH = 1k
 }
 
 SECTIONS {
@@ -33,6 +32,6 @@ SECTIONS {
 		*(.bss*)
 		. = ALIGN(4);
 		_ebss = .;
-		_stack = ORIGIN(DRAM) + LENGTH(DRAM) - 1M;
+		_stack = ORIGIN(RAM) + LENGTH(RAM) - 1M;
 	} >RAM
 }
